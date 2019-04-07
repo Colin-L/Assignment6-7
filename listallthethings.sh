@@ -4,12 +4,8 @@ function recursiveSearch
 {
 
 	if [ -e "$filename" ]; then
-<<<<<<< HEAD
-
-=======
-	    #this is where its changed
 	    ls -i | grep $filename
->>>>>>> inode
+
 	else
 
 		dirs=($(ls))
