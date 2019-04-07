@@ -4,7 +4,8 @@ function recursiveSearch
 {
 
 	if [ -e "$filename" ]; then
-		ls -i | grep $filename
+	    #this is where its changed
+	    ls -i | grep $filename
 	else
 
 		dirs=($(ls))
