@@ -1,20 +1,35 @@
-#!bin/sh
+#!bin/bash
 
-function recSearch {
+function recursiveSearch
+{
 
-    dirs=($(ls))
-    if [ ${#dirs[@]} -gt 0 ]; then
-	for i in ${dirs[*]};
-	do
-	    if [ -d $i ]; then
-		cd $i
-		recSearch
-		pwd
-		cd ..
-	    fi
-	    
-	done
-    fi
+	if [ -e "$filename" ]; then
+		ls -l | grep $filename
+	else
+
+		dirs=($(ls))
+		if [ ${#dirs[@]} -gt 0 ]; then
+
+			for dir in  ${dirs[*]}
+			do
+				if [ -d $dir ];then
+					cd $dir
+					pwd
+					recursiveSearch $filename
+					cd ..
+				fi
+			done
+		fi
+	fi
 }
-recSearch
+
+
+
+for filename in $@
+do
+        recursiveSearch $filename
+done
+
+
+
 
